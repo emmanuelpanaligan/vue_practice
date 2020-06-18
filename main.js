@@ -1,8 +1,9 @@
 var app = new Vue({
   el: "#app",
   data: {
+    brand: "Emmanuel Brand",
     product: "Socks",
-    image: "./assets/green.jpg",
+    selectedVariant: 0,
     inventory: 15,
     specs: ["70% cotton", "30% polyester", "Gender-neutral"],
     variants: [
@@ -10,11 +11,13 @@ var app = new Vue({
         variadId: 2234,
         variantColor: "green",
         variantImage: "./assets/green.jpg",
+        variantQuantity: 10,
       },
       {
         variadId: 2235,
         variantColor: "blue",
         variantImage: "./assets/blue.jpg",
+        variantQuantity: 0,
       },
     ],
     cart: 0,
@@ -23,14 +26,19 @@ var app = new Vue({
     addToCart() {
       this.cart += 1;
     },
-    updateProduct(variantImage) {
-      this.image = variantImage;
+    updateProduct(index) {
+      this.selectedVariant = index;
     },
   },
   computed: {
-    isActive() {
-      if (this.cart > this.inventory - 1) return true;
-      else return false;
+    title() {
+      return this.brand + " " + this.product;
+    },
+    image() {
+      return this.variants[this.selectedVariant].variantImage;
+    },
+    inStock() {
+      return this.variants[this.selectedVariant].variantQuantity;
     },
   },
 });

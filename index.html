@@ -16,7 +16,8 @@
         </div>
         <div class="product-info">
           <h1>{{ title }}</h1>
-          <p v-if="inStock">In Stock</p>
+          <p v-if="inStock > 7">In Stock</p>
+          <p v-else-if="inStock <= 7 && inStock > 0">Almost gone!</p>
           <p v-else>Out of Stock</p>
 
           <ul>
@@ -33,8 +34,8 @@
 
           <button
             v-on:click="addToCart"
-            v-bind:disabled="!inStock"
-            v-bind:class="{ disabledButton: !inStock}"
+            v-bind:disabled="cart >= inStock"
+            v-bind:class="{ disabledButton: cart >= inStock}"
           >
             Add to Cart
           </button>

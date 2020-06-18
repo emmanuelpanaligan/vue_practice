@@ -17,7 +17,7 @@ var app = new Vue({
         variadId: 2235,
         variantColor: "blue",
         variantImage: "./assets/blue.jpg",
-        variantQuantity: 0,
+        variantQuantity: 5,
       },
     ],
     cart: 0,
